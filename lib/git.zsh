@@ -11,3 +11,21 @@ parse_git_dirty () {
     echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
   fi
 }
+
+function git-scoreboard () {
+    git log | grep '^Author' | sort |uniq -c |sort -n -r
+}
+function git-track () {
+    branch=$(git-branch-name)
+    git config branch.$branch.remote origin
+    git config branch.$branch.merge refs/heads/$branch
+    echo "tracking origin/$tracking"
+}
+function github-init () {
+    git config branch.$(git-branch-name).remote origin
+    git config branch.$(git-branch-name).merge refs/heads/$(git-branch-name)
+}
+function github-url () {
+    git config remote.origin.url | sed -En 's/git(@|:\/\/)github.com(:|\/)(.+)\/(.+).git/https:\/\/github.com\/\3\/\4/p'
+}
+
