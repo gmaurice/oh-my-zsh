@@ -30,6 +30,3 @@ function current_branch() {
 alias ggpull='git pull origin $(current_branch)'
 alias ggpush='git push origin $(current_branch)'
 alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
-
-alias gitchanges='git whatchanged -1'
-alias lastc="git log --no-merges --pretty=format:' - %s (%an)' `git tag | tail -n 1`"
